@@ -1,0 +1,22 @@
+* {
+  all: unset;
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 16px;
+}
+
+// @import "theme.scss";
+
+.wifi-box {
+  // @extend .bar-box;
+  min-width: 300px;
+  padding: 5px 5px 5px 5px;
+  border: 2px solid;
+  border-color: $text;
+}
+.wifi-color-box {
+  background-color: $foreground;
+  border-radius: 8px;
+  min-height: 40px;
+}
+
+// vim: foldmethod=marker

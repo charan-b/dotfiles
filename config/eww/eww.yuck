@@ -1,0 +1,26 @@
+;; (include "./System-Menu/eww.yuck")
+;; (include "./Player/eww.yuck")
+;; (include "./Misc/eww.yuck")
+;; (include "./Main/eww.yuck")
+(include "./bar/eww.yuck")
+(include "./wifi-widget/eww.yuck")
+
+(defwidget closer []
+  (eventbox :class "back" :onclick "eww close-all"))
+
+(defwindow background-closer
+  :monitor 0
+  :geometry (geometry :width "100%" :height "100%")
+  :stacking "overlay"
+  (closer))
+
+(defvar warning "Battery is Low")
+(defwindow warning
+  :monitor 0
+  :geometry (geometry :x "0" :y "0" :width "420px" :height "100px" :anchor "center top")
+  :stacking "overlay"
+;  :namespace eww_bar
+  ;; :exclusive "true"
+  ;:focusable "true"
+  (eventbox :class "battery_alert" :onclick "eww open --toggle warning" "${warning}")
+)

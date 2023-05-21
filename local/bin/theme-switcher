@@ -1,0 +1,12 @@
+#!/bin/sh
+
+Blue() {
+	echo "You select blue"
+}
+
+Green() {
+	echo "You select Green"
+}
+
+theme="$(printf "Blue\nGreen" | fzf)"
+"$theme"

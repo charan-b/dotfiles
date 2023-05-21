@@ -1,0 +1,245 @@
+;; variables
+(defpoll network-icon :interval "1s" "System-Menu/scripts/network --icon")
+(defpoll network-status :interval "1s" "System-Menu/scripts/network --status")
+(defpoll network-class :interval "1s" "System-Menu/scripts/network --class")
+
+(defpoll bluetooth-status :interval "1s" "System-Menu/scripts/bluetooth --status")
+(defpoll bluetooth-class :interval "1s" "System-Menu/scripts/bluetooth --class")
+(defpoll bluetooth-battery :interval "1s" "System-Menu/scripts/bluetooth --battery")
+
+(defpoll airplane-icon :interval "1s" "System-Menu/scripts/airplane --icon")
+(defpoll airplane-status :interval "1s" "System-Menu/scripts/airplane --status")
+
+(defpoll volume-status :interval "1s" "System-Menu/scripts/volume --status")
+
+(defpoll dnd-status :interval "1s" "System-Menu/scripts/dnd --status")
+(defpoll dnd-icon :interval "1s" "System-Menu/scripts/dnd --icon")
+
+(defpoll redshift-icon :interval "1s" "[ $(pidof redshift) ] && echo '󰛨' || echo '󰹏'")
+(defpoll redshift-status :interval "1s" "[ $(pidof redshift) ] && echo 'On' || echo 'Off'")
+
+(defpoll image :interval "100h" "System-Menu/scripts/details --image")
+(defpoll name :interval "100h" "System-Menu/scripts/details --name")
+
+(defpoll battery-icon :interval "5s" "System-Menu/scripts/battery -i")
+(defpoll battery-label :interval "5s" "System-Menu/scripts/battery -l")
+
+(defpoll tips :interval "100h" "System-Menu/scripts/tips/tips")
+(defpoll tips-icon :interval "1s" "System-Menu/scripts/tips/toggle-tips --icon")
+(defpoll tips-status :interval "1s" "System-Menu/scripts/tips/toggle-tips --status")
+(defpoll battery-class :interval "1s" "System-Menu/scripts/battery -c")
+(defpoll profiles-icon :interval "1s" "System-Menu/scripts/power-profile --icon")
+(defpoll profiles-mode :interval "1s" "System-Menu/scripts/power-profile --mode")
+
+;; for sliders
+(deflisten volume "System-Menu/scripts/sliders/volume-slider --value")
+(defpoll volume-slider-indicator :interval "5s" "System-Menu/scripts/sliders/volume-slider --icon")
+(deflisten brightness "System-Menu/scripts/sliders/brightness-slider --value")
+(defpoll brightness-slider-indicator :interval "5s" "System-Menu/scripts/sliders/brightness-slider --icon")
+(defpoll main-volume-box :interval "2s" "System-Menu/scripts/volume col")
+
+;; widgets
+(defwidget system []
+  (box :orientation "v" :space-evenly "false" :class "main-system-box"
+
+;{{{ main top box
+      (box :orientation "h" :class "top-items-box" :space-evenly "false"
+          (box :class "menu-profile" :space-evenly "false" :spacing 15 :halign "start"
+              (box :style "background-image: url('${image}');" :class "menu-profile-image")
+              (label :class "menu-profile-name" :text name :valign "center")
+              )
+          (box :class "right-items-box" :space-evenly "false" :spacing 10
+              (eventbox :tooltip "Open Settings" :onclick "System-Menu/scripts/launch settings" 
+                (label  :class "menu-settings" :text "􀣌 "))
+              (eventbox :tooltip "Open Color Picker" :onclick "System-Menu/scripts/launch picker" 
+                (label :class "color-picker" :text "􀎙 "))
+              (eventbox :tooltip "Exit" :onclick "System-Menu/scripts/launch exit" 
+                (label :class "menu-exit" :text "􀰝 "))
+              (eventbox :tooltip "Shutdown this PC." :onclick "shutdown now" 
+                (label :class "menu-power" :text "􀆨 "))
+                )
+        )
+;}}} 
+
+;{{{ first-row-system
+      (box :orientation "h" :class "first-row-system" :space-evenly "false"
+
+          (box  :orientation "h" 
+                :class "wifi toggle-${network-class}" 
+                :space-evenly "false"
+                :halign "center"
+              (eventbox :onclick "System-Menu/scripts/network --toggle"
+                (box :space-evenly false
+                  (label :class "icon" :text "${network-icon}")
+                  (box :orientation "v" :space-evenly "false" :spacing 5
+                    (label  :halign "start" :class "label" :text "Wi-Fi")
+                    (label :class "status" :limit-width "10" :halign "start" :text "${network-status}")
+                    )
+                  ))
+              (label :class "seperator" :text "")
+              (eventbox  :onclick "System-Menu/scripts/launch wifi"
+                  (label :class "arrow" :text "􀯻")
+                  )
+              )
+
+           (box :orientation "h" 
+                :class "blue toggle-${bluetooth-class}" 
+                :space-evenly "false"
+                :halign "center"
+               (eventbox :tooltip bluetooth-battery 
+                       :onclick "System-Menu/scripts/bluetooth --toggle" 
+                  (box :space-evenly false
+                      (label :class "icon" :text "􀒜 ")
+                      (box  :orientation "v" :space-evenly "false" :spacing 5
+                        (label :class "label" :halign "start" :text "Bluetooth")
+                        (label :halign "start" :class "status" :limit-width "10" :text "${bluetooth-status}")
+                          )
+                      ))
+                (label :class "seperator" :text "")
+                 (eventbox  :onclick "blueberry"
+                   (label :class "arrow" :text "􀯻")
+                   )
+              )
+
+
+      )
+;}}}
+
+;{{{ second-row-system
+      (box :orientation "h" :class "second-row-system" :space-evenly false :hexpand true
+
+	        (box :orientation "h" 
+	           :class "sound toggle-${volume-status}" 
+	           :space-evenly "false"
+	           :halign "center"
+	          (eventbox :onclick "System-Menu/scripts/volume --toggle" 
+	            (box :space-evenly false
+	                (label :class "icon" :text "􀊧 ")
+	                (box  :orientation "v" :space-evenly "false" :spacing 5
+	                  (label :class "label" :halign "center" :text "Sound")
+	                  (label :halign "start" :class "status" :limit-width "8" :text "${volume-status}")
+	                    )
+	                ))
+	           (label :class "seperator" :text "")
+	           (eventbox  :onclick "blueberry"
+	             (label :class "arrow" :text "􀆊")
+	             )
+	          )
+
+          (box  :orientation "h" 
+                :class "dnd toggle-${dnd-status}" 
+                :space-evenly "false"
+                :halign "center"
+              (eventbox :onclick "System-Menu/scripts/dnd --toggle"
+                (box :space-evenly false
+                  (label :class "icon" :text "􀁏 ")
+                  (box :orientation "v" :space-evenly "false" :spacing 5
+                    (label  :halign "center" :class "label" :text "Do Not Disturb")
+                    (label :class "status" :limit-width "15" :halign "start" :text "${dnd-status}")
+                    )
+                  ))
+              ))
+;}}}
+
+;{{{ third-row-system
+      (box :orientation "h" :class "second-row-system" :space-evenly false :hexpand true
+
+          (box  :orientation "h" 
+                :class "redshift toggle-${redshift-status}" 
+                :space-evenly "false"
+                :halign "center"
+              (eventbox :onclick "System-Menu/scripts/night-light --toggle"
+                (box :space-evenly false
+                  (label :class "icon" :text "􀛮 ")
+                  (box :orientation "v" :space-evenly "false" :spacing 5
+                    (label  :halign "center" :class "label" :text "DnD")
+                    (label :class "status" :limit-width "15" :halign "start" :text "${redshift-status}")
+                    )
+                  ))
+              (label :class "seperator" :text "")
+              (eventbox  :onclick "redshiftgui"
+                  (label :class "arrow" :text "􀯻")
+                  )
+              )
+          (box :orientation "h" 
+               :class "airplane toggle-${airplane-status}" 
+               :space-evenly "false"
+               :halign "center"
+            (eventbox :onclick "System-Menu/scripts/airplane --toggle"
+               (box :space-evenly false
+                  (label :class "icon" :text "􀑓 ")
+                  (box :class "airplane-labels-box" :orientation "v" :space-evenly "false" :spacing 5
+                      (label :halign "center" :class "label" :text "Airplane Mode")
+                      (label :halign "start" :class "status":text "${airplane-status}")
+                    )
+                  )
+               )
+              )
+       )
+;}}}
+
+;{{{ sliders-system
+      (box :orientation "h" :class "sliders-system" :spacing 5 :hexpand true :space-evenly false
+          (box :orientation "v" :space-evenly "false" :spacing 5
+              (eventbox :halign "start" :onclick "amixer set Master toggle" :class "volume-slider-icon" "${volume-slider-indicator}")
+              (eventbox :halign "start" :class "brightness-slider-icon" "${brightness-slider-indicator}")
+              )
+          (box :orientation "v" :space-evenly "false"
+              (scale :class "volume-slider"
+                :value {volume == "" ? 0 : volume}
+                :orientation "h"
+                :width 390
+                :max 100
+                :min 0
+                :marks true
+                :onchange "amixer set Master {}% --quiet")
+              (scale :class "brightness-slider"
+                :orientation "h"
+                :max 100
+                :min 1
+                :value {brightness == "" ? 0 : brightness}
+                :width 390
+
+              :onchange "brightnessctl --quiet s {}%")
+            )
+          (box :orientation "v" :space-evenly "false" :spacing 17
+              (eventbox :onclick "System-Menu/scripts/launch volume" :class "volume-slider-button" "􀁵")
+              (eventbox :onclick "System-Menu/scripts/launch display" :class "brightness-slider-button" "􀁵")
+
+            )
+        )
+;}}}
+
+;{{{ bottom-items-box
+      (box :orientation "h" :space-evenly "false" :class "bottom-items-box" :spacing 250
+          (box :orientation "h" :space-evenly "false" :class "battery-box"
+              (label :class "battery-icon ${battery-class == "" ? "battery-icon-charging" : "battery-icon-discharging"}"
+                     :text "${battery-icon}")
+              (label :class "battery-percentage" :valign "end" :text "${EWW_BATTERY.BAT1.capacity}%")
+            )
+          (eventbox :cursor "pointer" :onclick "System-Menu/scripts/tips/toggle-tips --toggle"
+            (box :class "tips-main-box" :space-evenly "false"
+                (label :class "tips-icon" :text "${tips-icon}")
+                (label :class "tips-label" :text "${tips-status}")
+              )
+            )
+        )
+;}}}
+))
+
+;;{{{ windows
+(defwindow system-menu
+  :geometry (geometry :width 320 :height 300 :y 5 :x 1350)
+  :stacking "overlay"
+  :monitor 0
+  (system))
+
+(defwindow tips
+  :windowtype "normal"
+  :wm-ignore true
+  :monitor 0
+  :geometry (geometry :width 320 :height 100 :y 432 :x 1350)
+  (tips))
+;}}}
+
+; vim: foldmethod=marker

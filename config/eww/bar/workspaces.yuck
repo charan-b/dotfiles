@@ -1,0 +1,38 @@
+
+(deflisten workspaces :initial "[]" "bash ./scripts/get-workspaces")
+(deflisten window :initial "..." "bash ./scripts/get-window-title")
+(deflisten current_workspace :initial "1" "bash ./scripts/get-active-workspace")
+
+;; (defpoll workspaces :interval "1s" :initial "[]" "bash ./scripts/get-workspaces")
+;; (defpoll window :interval "1s" :initial "..." "bash ./scripts/get-window-title")
+;; (defpoll current_workspace :interval "1s" :initial "1" "bash ./scripts/get-active-workspace")
+
+(defwidget window_w []
+  (box
+    (label :text "${window}"
+    )
+  ))
+
+(defwidget workspaces []
+  (eventbox :onscroll "bash ~/.config/eww/status-bar/scripts/change-active-workspace {} ${current_workspace}" :class "workspaces-widget"
+    (box :space-evenly true
+      (for workspace in workspaces
+        (eventbox :onclick "hyprctl dispatch workspace ${workspace.id}"
+          (box :class "workspace-entry ${workspace.id == current_workspace ? "current" :""} ${workspace.windows > 0 ? "occupied" : "empty"}"
+            (label :text "${workspace.id}")
+            )
+          )
+        )
+      )
+    )
+  )
+
+
+(defwindow stat-bar
+  :monitor 0
+  :geometry (geometry :x "0" :y "-38" :anchor "top center")
+  :stacking "overlay"
+  (box :class "main" :space-evenly false
+  (window_w)
+  (workspaces)
+  ))

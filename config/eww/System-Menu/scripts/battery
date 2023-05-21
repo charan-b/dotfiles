@@ -1,0 +1,41 @@
+#!/bin/sh
+
+bat=$(acpi -b)
+level=$(acpi -b|grep -o "[0-9]*%"|tr -d "%")
+
+icon() {
+    if [[ "$bat" == *"until"* ]]; then
+        
+        if [[ "$level" -ge "80" ]]; then
+            echo " 􀛨 "
+            elif [[ "$level" -ge "40" ]]; then
+            echo " 􀛩  "
+        else
+            echo " 􀛪  "
+        fi
+    else
+        if [[ "$level" -ge "80" ]]; then
+            echo "􀛨 "
+            elif [[ "$level" -ge "40" ]]; then
+            echo "􀛩  "
+        else
+            echo "􀛪  "
+        fi
+    fi
+}
+
+class() {
+    if [[ "$bat" == *"until"* ]]; then
+        echo ""
+    else
+        echo " "
+    fi
+}
+
+if [[ $1 = "-l" ]]; then
+    echo "${level}%"
+elif [[ $1 == "-c" ]]; then
+    class
+elif [[ $1 = "-i" ]]; then
+    icon
+fi

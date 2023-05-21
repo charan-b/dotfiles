@@ -1,0 +1,255 @@
+* {
+  all: unset;
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 16px;
+}
+
+@import "theme.scss";
+
+.main-box {
+  background-color: $crust;
+  border-radius: 9px;
+  margin: 3px 5px 5px 5px;
+  box-shadow: 0px 1px 3px 1px rgba(30, 29, 45, 0.8);
+}
+.color-box {
+  background: $surface0;
+  border-radius: 8;
+  margin: 5px 4px;
+  padding: 1px 8px 1px 12px;
+}
+.txt {
+  color: $text;
+  font-weight: bold;
+}
+.glyph {
+  font-family: "SF Pro Rounded";
+  padding-right: 4px;
+  color: $mauve;
+  font-weight: bold;
+}
+
+.scale {
+  // @extend .color-box;
+  margin: 0px 4px 0px 14px;
+.scale_trough {
+  background-color: $base;
+  border-radius: 10px;
+}
+.scale_highlight {
+  border-radius: 10px;
+  padding: 5px;
+  background-color: $green;
+}
+}
+
+//{{{ Left:
+.left_box {
+  padding: 0px 0px 0px 18px;
+}
+//}}}
+
+//{{{ CENTER:
+.center_box {
+  font-family: "SF Pro";
+  font-weight: bolder;
+  padding: 0px 18px 0px 0px;
+}
+//}}}
+
+//{{{ RIGHT:
+.right_box {
+
+//{{{ Wifi
+  .wifi {
+//  @extend .color-box;
+    &_prefix{
+      @extend .glyph; 
+      padding-right: 0px;
+      color: #c6a0f6;
+      &-off {
+        color: $red;
+      }
+    }
+    &_txt {
+      @extend .txt;
+      padding: 0px 20px 0px 10px;
+    }
+  }
+//}}}
+
+//{{{ Bluetooth
+  .bluetooth {
+//  @extend .color-box;
+    &_prefix {
+      @extend .glyph;
+      padding-left: 3px;
+      color: #c683bf;
+    }
+    &_prefix_off {
+      @extend .glyph;
+      padding-left: 3px;
+      color: $red;
+    }
+    &_prefix_low {
+      @extend .glyph;
+      padding-left: 3px;
+      color: $pink;
+    }
+    &_txt {
+      @extend .txt;
+    }
+  }
+//}}}
+
+//{{{ Volume
+  .volume {
+//    @extend .color-box;
+      &_prefix {
+        @extend .glyph;
+        // min-width: 22px;
+        color: #a6da95;
+      }
+      &_txt {
+        @extend .txt;
+        // min-width: 30px;
+      }
+      &_scale {
+        @extend .scale;
+      }
+      &_scale trough {
+        @extend .scale_trough;
+      }
+      &_scale highlight {
+        @extend .scale_highlight;
+      }
+    }
+//}}}
+
+//{{{ brightness
+  .brightness {
+//    @extend .color-box;
+      &_prefix{
+      @extend .glyph;
+      color: #f9e2af;
+      }
+      &_txt {
+        @extend .txt;
+      }
+      &_scale {
+        @extend .scale;
+      }
+      &_scale trough {
+        @extend .scale_trough;
+      }
+      &_scale highlight {
+        @extend .scale_highlight;
+      }
+    }
+}
+//}}}
+//}}}
+
+//{{{ Battery
+.battery {
+ // @extend .color-box;
+ padding: 0px 20px 0px 0px;
+    &_prefix{
+      @extend .glyph;
+      font-size: 16px;
+    }
+    &_prefix_low {
+      @extend .glyph;
+      color: $red;
+      font-size: 16px;
+    }
+    &_txt {
+      @extend .txt;
+      font-size: 16px;
+    }
+    &_txt_low {
+      @extend .txt;
+      color: $red;
+      font-size: 16px;
+    }
+    &_unit {
+      @extend .txt; 
+      font-size: 16px;
+    }
+    &_unit_low {
+      @extend .txt;
+      color: $red;
+      font-size: 16px;
+    }
+  }
+//}}}
+
+//{{{ system-menu
+.system-menu {
+  @extend .glyph;
+  padding-right: 15px;
+  font-size: 16px;
+}
+//}}}
+
+//{{{ Date
+.date {
+  @extend .txt;
+  padding-left: 7px;
+  font-weight: normal;
+  font-size: 15px;
+  color: $subtext1;
+}
+.week {
+  @extend .txt;
+  font-weight: normal;
+  font-size: 15px;
+  color: $subtext1;
+}
+.month {
+  @extend .txt;
+  padding-left: 2px;
+  font-weight: normal;
+  font-size: 15px;
+  color: $subtext1;
+}
+.time {
+  @extend .txt;
+  // font-weight: normal;
+  font-size: 20px;
+  color: $red;
+}
+//}}}
+
+//{{{ Music
+.music {
+// @extend .color-box;
+  // padding-left: 28px;
+  &-icon {
+    @extend .glyph;
+    font-weight: bold;
+    font-size: 18px;
+    color: #f9e2af;
+  }
+  .music-title-txt {
+    @extend .txt;
+    font-size: 16px;
+  }
+  &-prev {
+    @extend .txt;
+    font-size: 16px;
+  }
+  &-play {
+    @extend .txt;
+    padding: 0px 25px 0px 25px;
+    // min-width: 25px;
+    font-size: 16px;
+  }
+  &-next {
+    @extend .txt;
+    font-size: 16px;
+  }
+}
+//}}}
+
+// vim: foldmethod=marker
