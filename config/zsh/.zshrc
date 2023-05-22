@@ -30,12 +30,12 @@ zle_highlight=('paste:none')
 eval "$(dircolors -b)"         # for LS_COLORS
 
 # add files
-source-file "$ZDOTDIR/exports.zsh"
-source-file "$ZDOTDIR/functions.zsh"
-source-file "$ZDOTDIR/aliases.zsh"
-source-file "$ZDOTDIR/prompt.zsh"
-source-file "$ZDOTDIR/fzf/fzf.zsh"
-source-file "$ZDOTDIR/keybinds.zsh"
+plug "$ZDOTDIR/exports.zsh"
+plug "$ZDOTDIR/functions.zsh"
+plug "$ZDOTDIR/aliases.zsh"
+plug "$ZDOTDIR/prompt.zsh"
+plug "$ZDOTDIR/fzf/fzf.zsh"
+plug "$ZDOTDIR/keybinds.zsh"
 
 # enable completion features
 autoload -Uz compinit
@@ -63,6 +63,6 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 
 # Plugins
-source-plugin "zsh-users/zsh-autosuggestions"
-source-plugin "zsh-users/zsh-syntax-highlighting"
-source-plugin "hlissner/zsh-autopair"
+plug "zsh-users/zsh-autosuggestions"
+plug "zsh-users/zsh-syntax-highlighting"
+plug "hlissner/zsh-autopair"
