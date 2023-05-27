@@ -1,26 +1,39 @@
-;; (include "./System-Menu/eww.yuck")
-;; (include "./Player/eww.yuck")
-;; (include "./Misc/eww.yuck")
-;; (include "./Main/eww.yuck")
-(include "./bar/eww.yuck")
-(include "./wifi-widget/eww.yuck")
+;; Variables
+(include "yuck/bar/bar.yuck")
+(include "yuck/variables.yuck")
+(include "yuck/powermenu.yuck")
+(include "yuck/wifi-widget.yuck")
 
-(defwidget closer []
-  (eventbox :class "back" :onclick "eww close-all"))
-
-(defwindow background-closer
+;; Bar
+(defwindow bar
   :monitor 0
-  :geometry (geometry :width "100%" :height "100%")
-  :stacking "overlay"
-  (closer))
+  :geometry (geometry :x "0px" :y "0px" :width "100%" :height "22px" :anchor "top center")
+  :stacking "bg"
+  :namespace "eww_bar"
+  :exclusive "true"
+  (bar))
 
-(defvar warning "Battery is Low")
+;; Warning
 (defwindow warning
   :monitor 0
   :geometry (geometry :x "0" :y "0" :width "420px" :height "100px" :anchor "center top")
   :stacking "overlay"
+  :namespace "warning-widget"
+  (eventbox :class "battery_alert" :onclick "eww open --toggle warning" "${warning}"))
+
+;; Powermenu
+(defwindow powermenu
+  :monitor 0
+  :geometry (geometry :x "0px" :y "-33px" :height "100%" :width "100%" :anchor "top left")
+  :stacking "fg"
+  :namespace "powermenu_eww"
+    (powermenu))
+
+;; Wifi_Widget
+(defwindow wifi_widget
+  :monitor 0
+  :geometry (geometry :x "140px" :y "0px" :anchor "top right")
+  :stacking "overlay"
 ;  :namespace eww_bar
-  ;; :exclusive "true"
-  ;:focusable "true"
-  (eventbox :class "battery_alert" :onclick "eww open --toggle warning" "${warning}")
-)
+  :exclusive "true"
+    (wifi-widget))

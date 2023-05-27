@@ -1,0 +1,43 @@
+* {
+  all: unset;
+  transition: 200ms ease-out;
+}
+
+.powermenu {
+  background-color: rgba($color: #000, $alpha: 0.5);
+}
+
+.powermenu-box {
+  background-color: $gray-alt;
+  border-radius: 20px;
+}
+.greeting {
+  background-color: $bg-alt;
+  border-radius: 20px 20px 0px 0px;
+  padding: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+.powermenu-icon-box {
+  border-radius: 30px;
+  padding: 20px;
+  margin: 20px;
+  font-size: 80px;
+  background-color: $bg;
+}
+.shutdown {
+  @extend .powermenu-icon-box;
+  color: $red;
+}
+.reboot {
+  @extend .powermenu-icon-box;
+  color: $green;
+}
+.exit {
+  @extend .powermenu-icon-box;
+  color: $blue;
+}
+.lock {
+  @extend .powermenu-icon-box;
+  color: $yellow;
+}

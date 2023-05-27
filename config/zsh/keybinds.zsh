@@ -52,4 +52,5 @@ bindkey "^[[B" down-line-or-beginning-search # Down
 bindkey -s '^o' 'lf^M'
 bindkey -s "^c" 'lfcd^M'
 bindkey '^ ' autosuggest-accept
+bindkey -s '^f' 'opn^M'
 bindkey -s '^s' 'opn^M'

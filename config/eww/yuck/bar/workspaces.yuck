@@ -1,0 +1,7 @@
+(defwidget workspaces []
+  (box :class "workspaces-box" 
+       :space-evenly true
+    (for ws in {hyprland.workspaces}
+      (eventbox :onclick "hyprctl dispatch workspace ${ws.id}"
+        (label :class "workspace-entry ${ws.active == ws.id  ? "current" : ws.windows == 1 ? "occupied" : "empty"}"
+               :text "${ws.id}")))))

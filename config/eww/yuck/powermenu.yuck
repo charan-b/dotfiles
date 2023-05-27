@@ -1,0 +1,32 @@
+(defwidget powermenu[]
+  (eventbox :onclick "${EWW_CMD} close powermenu"
+    (box :class "powermenu-box" 
+         :orientation "v" 
+         :space-evenly "false" 
+         :halign "center"
+         :valign "center"
+      (label :class "greeting" 
+             :text greeting)
+      (box :orientation "h" 
+        (power_widget :class "shutdown" 
+                      :onclick "shutdown now" 
+                      :text "􀆨")
+        (power_widget :class "reboot" 
+                      :width 160 
+                      :onclick "reboot" 
+                      :text "􀅉")
+        (power_widget :class "exit" 
+                      :width 160 
+                      :onclick "pkill Hyprland"
+                      :text "󰍃")
+        (power_widget :class "lock" 
+                      :width 160 
+                      :onclick "swaylock" 
+                      :text "􀎡")))))
+
+  (defwidget power_widget [ class onclick text ]
+    (eventbox :cursor "pointer" 
+              :width 160 
+              :onclick onclick 
+      (label :class "${class}" 
+             :text text)))

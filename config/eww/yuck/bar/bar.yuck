@@ -1,0 +1,51 @@
+(defwidget bar []
+  (centerbox :class "bar-box" 
+       :orientation "h"
+    (left)
+    (center)
+    (right)))
+(defwidget left []
+  (box :class "left_box" 
+       :space-evenly false 
+       :halign "start" 
+       :orientation "h" 
+       :spacing 10
+    (date)
+    (workspaces)
+    (window-title)))
+(defwidget center []
+  (box :class "center_box"
+    (music)))
+(defwidget right []
+  (box :class "right_box" 
+       :space-evenly false
+       :halign "end" 
+       :spacing 15
+    (cpu)
+    (ram)
+    (temperature)
+    (wifi)
+    (bluetooth)
+    (box :class "color-box" 
+         :space-evenly false 
+         :halign "start"
+         :spacing 3
+      (volume)
+      (brightness))
+    (battery)
+    (power)))
+;----------------------------
+; Modules
+(include "yuck/bar/date.yuck")
+(include "yuck/bar/workspaces.yuck")
+(include "yuck/bar/window-title.yuck")
+(include "yuck/bar/music.yuck")
+(include "yuck/bar/wifi.yuck")
+(include "yuck/bar/bluetooth.yuck")
+(include "yuck/bar/volume.yuck")
+(include "yuck/bar/brightness.yuck")
+(include "yuck/bar/cpu.yuck")
+(include "yuck/bar/ram.yuck")
+(include "yuck/bar/temp.yuck")
+(include "yuck/bar/battery.yuck")
+(include "yuck/bar/power.yuck")

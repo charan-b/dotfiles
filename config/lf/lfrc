@@ -6,6 +6,7 @@ set ifs "\n"
 # set preview false
 set previewer ~/.config/lf/preview.zsh
 set cleaner ~/.config/lf/clean_preview.zsh
+set cursorpreviewfmt ""
 
 # Custom Functions
 cmd open ${{

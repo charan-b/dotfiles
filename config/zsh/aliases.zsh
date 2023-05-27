@@ -50,8 +50,8 @@ alias hyp='nvim $HOME/.config/hypr/hyprland.conf'
 alias source-zsh='source ~/.config/zsh/.zshrc'
 alias svn="svn --config-dir \"$XDG_CONFIG_HOME\"/subversion"
 
-
-alias nvim-l="NVIM_APPNAME=LazyVim nvim"
-alias kvim="NVIM_APPNAME=kickstart nvim"
-alias avim="NVIM_APPNAME=AstroNvim nvim"
 alias nvvim="NVIM_APPNAME=NvChad nvim"
+
+alias gs='git status'
+alias gp='git push'
+alias ga='git add'

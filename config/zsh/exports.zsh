@@ -32,6 +32,7 @@ export GNUPGHOME="$HOME"/.local/share/gnupg
 export XDG_CURRENT_DESKTOP="Wayland"
 export LS_COLORS="${LS_COLORS}ow=0;95"    # ls color
 export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
+export WGETRC="$XDG_CONFIG_HOME"/wgetrc
 
 ## FZF stuff
 export FZF_DEFAULT_COMMAND="${FZF_DEFAULT_COMMAND:-"fd --base-directory ~ -L --type f --exclude='*.srt'"}"

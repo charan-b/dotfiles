@@ -1,0 +1,6 @@
+(defwidget date []
+  (box :halign "start" :space-evenly false
+      (label :class "time" :valign "fill" :text "${date.hour}:${date.min}")
+      (label :class "week" :valign "center" :text '${date.week}')
+      (label :class "date" :valign "center" :text "${date.day}-${date.month}")
+    ))

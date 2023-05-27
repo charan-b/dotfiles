@@ -13,12 +13,9 @@ $cyan: #7dcfff;
 $gray: #565f89;
 $gray-alt: #292E42;
 
-@import "./System-Menu/eww.scss";
-@import "./Player/eww.scss";
-@import "./Misc/eww.scss";
-// @import "./Main/eww.scss";
-@import "./bar/eww.scss";
-@import "./wifi-widget/eww.scss";
+@import "./scss/powermenu.scss";
+@import "./scss/bar.scss";
+@import "./scss/wifi-widget.scss";
 
 .back {
   background-color: rgba($color: #000000, $alpha: 0.0);
