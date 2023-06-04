@@ -24,21 +24,12 @@ function lfcd () {
     fi
 }
 
-# open files
-open()
-{
-    while [ "$#" -gt 0 ]; do
-        xdg-open $1
-        shift
-    done
-}
-
 copy-line () {
-rg --line-number . | fzf --delimiter ':' --preview 'bat --color=always --highlight-line {2} {1}' | awk -F ':' '{print $3}' | sed 's/^\s+//' | wl-copy
+rg --line-number . | fzf --delimiter ':' --preview 'bat --color=always --highlight-line {2} {1}' --preview-window 'up,60%,border-bottom,+{2}+3/3,~3'| awk -F ':' '{print $3}' | sed 's/^\s+//' | wl-copy
 }
 
 open-line () {
-nvim $(rg --line-number .|fzf --delimiter ':' --preview 'bat --color=always --highlight-line {2} {1}'|awk -F ':' '{print "+"$2" "$1}') 
+nvim $(rg --line-number .|fzf --delimiter ':' --preview 'bat --color=always --highlight-line {2} {1}' --preview-window 'up,60%,border-bottom,+{2}+3/3,~3'|awk -F ':' '{print "+"$2" "$1}') 
 }
 
 
@@ -88,4 +79,10 @@ done
 alert() {
   local exit_status=$?
   notify-send "Finished!!" "Finished Executing Command With\n Exit Code: $exit_status "
+}
+
+gpt() {
+  printf "tgpt: \n\n"
+  read input
+  tgpt "$input"
 }

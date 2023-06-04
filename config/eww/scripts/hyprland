@@ -15,10 +15,10 @@ generate() {
   echo -n '{"workspaces": ['
 
   for i in {1..10}; do
-    echo -n ''"$([ "$i" -eq 1 ] || echo ,)" '{"id": '"$i"', "windows": '"${o[$i]}"', "active": "'"$active_ws"'"}'
+    echo -n ''"$([ "$i" -eq 1 ] || echo ,)" '{"id": '"$i"', "windows": '"${o[$i]}"'}'
   done
 
-  echo '], "activewindow": "'"$activewindow"'"}'
+  echo '], "active_win": "'"$activewindow"'", "active_ws": '"$active_ws"'}'
 }
 
 # setup

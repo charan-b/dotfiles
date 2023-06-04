@@ -1,6 +1,23 @@
 #!/bin/sh
 
 eww_status=$(eww get player)
+## Get data
+STATUS="$(mpc status)"
+COVER="/tmp/.music_cover.png"
+MUSIC_DIR="$HOME/Music"
+
+## Get cover
+get_cover() {
+	ffmpeg -i "${MUSIC_DIR}/$(mpc current -f %file%)" "${COVER}" -y >/dev/null 2>&1
+	STATUS=$?
+
+	# Check if the file has a embbeded album art
+	if [ "$STATUS" -eq 0 ]; then
+		echo "$COVER"
+	else
+		echo "images/music.png"
+	fi
+}
 
 mpd() {
 	status=$(mpc | awk -F'[][]' 'NF > 1 {print $2}')
@@ -13,7 +30,7 @@ mpd() {
 	# 	album="No album"
 	fi
 
-	echo "{\"status\":\"$status\",\"title\":\"$title\",\"album\":\"$album\"}"
+	echo "{\"status\":\"$status\",\"title\":\"$title\",\"album\":\"$album\",\"album_art\":\"$(get_cover)\"}"
 }
 
 mpris() {

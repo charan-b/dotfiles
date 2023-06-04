@@ -18,7 +18,7 @@
           (box :space-evenly false
             (label :class "music-title" 
                    :halign "center" 
-                   :text "${music["title"]}" 
+                   :text "${music.title}" 
                    :limit-width 35 
                    :wrap "false")))
         (revealer :reveal music_reveal 

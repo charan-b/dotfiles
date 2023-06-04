@@ -1,29 +1,20 @@
 ;; Bar
-(defpoll date :interval "5s" :initial '{"day": "d","week":"w","hour":"h","month":"m","min":"m"}' "./scripts/date.sh")
+(defvar ssid_rev true)
 (defvar music_reveal false)
-(defvar player "mpd")
-(defpoll music :interval "1s" :initial '{"status":"","title":"","artist":""}' "./scripts/music.sh mpris")
-(defvar ssid_reveal true)
-(defvar wifi_script "./scripts/wifi.sh")
-(defpoll ssid :interval "1s" "./scripts/wifi.sh state")
-(defvar bluetooth_reveal false)
-(defpoll bluetooth 
-  :interval "1s" 
-  :initial '{"state": "No Connection", "icon": "􀒝 ", "batterylow": "", "battery": "0"}' 
-  "./scripts/bluetooth.sh")
 (defvar volume_reveal false)
-(defpoll volume :interval "1s" :initial '{"volume": "20", "icon": "􀊣 "}' "./scripts/Volume.sh")
+(defvar bluetooth_reveal false)
 (defvar brightness_reveal false)
+(defvar player "mpd")
+(defpoll date :interval "5s" :initial '{}' "scripts/date.sh")
+(defpoll music :interval "1s" :initial '{}' "scripts/music.sh mpris")
+(defpoll net :interval "1s" "scripts/wifi.sh state")
+(defpoll bluetooth :interval "1s" :initial '{}' "scripts/bluetooth.sh")
+(defpoll volume :interval "1s" :initial '{}' "scripts/volume.sh")
 (defpoll brightness :interval "5s" :initial "0" "echo $(($(brightnessctl get)*100/120000))")
-(deflisten hyprland :initial "{\"workspaces\":[], \"activewindow\": \"\"}" "./scripts/hyprland")
-
+(deflisten hyprland :initial "{}" "scripts/hyprland")
 ;; Warning
 (defvar warning "Battery is Low")
-
 ;; Powermenu
-(defpoll greeting :interval "10h" "./scripts/quote")
-
+(defpoll greeting :interval "10h" "scripts/quote")
 ;; WIfi Widget
-(defpoll con :interval "8s" 
-             :initial "[]" 
-`nmcli -f ssid,bssid,in-use d w|sed '1d;/*/d'|tr -s " "| jq -ncR '[inputs | split(" ") | { "SSID": .[0], "BSSID": .[1] }]'`)
+(defpoll con :interval "8s" :initial "[]" "scripts/wifi.sh ssid")

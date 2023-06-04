@@ -14,7 +14,7 @@
         (power_widget :class "reboot" 
                       :width 160 
                       :onclick "reboot" 
-                      :text "􀅉")
+                      :text "􀊞")
         (power_widget :class "exit" 
                       :width 160 
                       :onclick "pkill Hyprland"

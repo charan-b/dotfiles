@@ -36,6 +36,7 @@ plug "$ZDOTDIR/aliases.zsh"
 plug "$ZDOTDIR/prompt.zsh"
 plug "$ZDOTDIR/fzf/fzf.zsh"
 plug "$ZDOTDIR/keybinds.zsh"
+# plug "$ZDOTDIR/fzf/fzf-git.sh"
 
 # enable completion features
 autoload -Uz compinit

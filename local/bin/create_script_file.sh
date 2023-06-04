@@ -1,15 +1,31 @@
 #!/bin/sh
 
 create() {
-  [ -f "$file" ] && echo "file already exist" && exit
-  touch "$file"
+	[ -f "$file" ] && echo "file already exist" && exit
+	touch "$file"
 	chmod +x "$file"
-  echo "#!/bin/sh" > "$file"
-  echo "" >> "$file"
-  echo "" >> "$file"
+	echo "#!/bin/sh" >"$file"
+	echo "" >>"$file"
+	echo "" >>"$file"
 	$EDITOR +3 "$file"
 }
-echo -n "Give File Name: "
+printf "%s" "Give File Name: "
 read -r f_name
-[[ $1 == "here" ]] && file="$(pwd)/$f_name" || file="$HOME/.local/bin/$f_name"
-[ -n "$f_name" ] && create
+[ -n "$f_name" ] || exit 1
+# [ "$1" = "here" ] && file="$(pwd)/$f_name" || file="$HOME/.local/bin/$f_name"
+# [ -n "$f_name" ] && create
+case "$1" in
+here)
+	file="$(pwd)/$f_name"
+	;;
+fzf)
+	file="$(fd --type d | fzf)$f_name"
+	;;
+/*)
+	[ -d "$1" ] && file="$1/$f_name"
+	;;
+*)
+	file="$HOME/.local/bin/$f_name"
+	;;
+esac
+[ -n "$file" ] && create

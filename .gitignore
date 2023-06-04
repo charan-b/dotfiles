@@ -4,3 +4,4 @@ config/zsh/.zsh_history
 config/zsh/.zcompdump
 "*.log"
 config/ncmpcpp/.svn
+config/eww/ref/

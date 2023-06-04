@@ -11,5 +11,5 @@
            :valign "center"
         (eventbox :class "txt" 
                   :valign "center" 
-                  :onclick "./scripts/wifi_connect.sh ${ssid.BSSID} ${ssid.SSID} &" "${ssid.SSID}")))))
+                  :onclick "./scripts/wifi.sh connect ${ssid.BSSID} ${ssid.SSID} &" "${ssid.SSID}")))))
 

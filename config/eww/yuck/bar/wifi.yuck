@@ -5,14 +5,26 @@
             :onhoverlost "${EWW_CMD} update ssid_reveal=false"
     (box :class "wifi" 
          :space-evenly false 
-      (label :class "wifi-icon wifi-${ssid}" 
-             :text "${ssid == "on" ? "􀙥 " : ssid =~ "Wired.*" ? "􀖀 " : "􀙇 "}" )
-      (revealer :reveal true;ssid_reveal 
-                :transition "slideright" 
-                :duration "200ms"
-        (label :class "wifi_txt" 
-               :show-truncated false 
-               :limit-width 16 
-               :text "${ssid} ${round(EWW_NET.wlo1.NET_DOWN/1000/1000,1)}Mb/s" 
-               :visible "${ssid == "on" ? false : true }"))
-      )))
+      (label :class "wifi-icon wifi-${net.ssid}" 
+             :text "${net.ssid == "" ? "􀙥 " : net.ssid =~ "Wired.*" ? "􀖀 " : "􀙇 "}" )
+      (box :space-evenly false 
+           :orientation "v"
+           :visible "${net.ssid == "" ? false : true}"
+           :valign "center"
+        (revealer :reveal "${EWW_NET[net.device].NET_DOWN > 1000 ? false : true}" 
+                  :transition "slidedown" 
+          (label :class "wifi_txt" 
+                 :show-truncated false 
+                 :limit-width 16 
+                 :text "${net.ssid}"))
+        (revealer :reveal "${EWW_NET[net.device].NET_DOWN > 1000 ? true : false}" 
+                  :transition "slideup" 
+          (speed :speed "${EWW_NET[net.device].NET_DOWN}"))
+          ))))
+(defwidget speed [speed]
+  (box :space-evenly false
+       :halign "center"
+    (label :class "wifi_txt"
+           :text "${round(speed/1000,0) < 1000 ? round(speed/1000,0) : round(speed/1000/1000,1)}")
+    (label :class "wifi_txt"
+           :text "${round(speed/1000,0) < 1000 ? "Kb/s" : "Mb/s"}")))

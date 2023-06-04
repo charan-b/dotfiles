@@ -3,19 +3,19 @@
             :onclick "bluetoothctl connect 'F8:AB:E5:24:AE:D1'"
             :onhover "${EWW_CMD} update bluetooth_reveal=true"
             :onhoverlost "${EWW_CMD} update bluetooth_reveal=false"
-            :visible "${bluetooth.state == "No Connection" ? false : true}"
+            :visible "${bluetooth.state == "" ? false : true}"
     (box :class "bluetooth" 
          :space-evenly false 
          :spacing 3
-      (label :class "bluetooth-icon ${bluetooth.state == "off" ? "bluetooth-alert" : bluetooth.batterylow == "low" ? "bluetooth-alert" : "" }" 
+      (label :class "bluetooth-icon ${bluetooth.state == "off" ? "bluetooth-alert" : bluetooth.battery < "20" ? "bluetooth-alert" : "" }" 
              :text "􀲍" )
       (revealer :reveal true
                 :transition "slideleft" 
         (label :class "bluetooth-ssid"
                :show-truncated false 
                :limit-width 16 
-               :text "${bluetooth.state}" ))
-      (label :class "bluetooth-icon ${bluetooth.state == "off" ? "bluetooth-alert" : bluetooth.batterylow == "low" ? "bluetooth-alert" : "" }" 
+               :text "${bluetooth.state}"))
+      (label :class "bluetooth-icon ${bluetooth.state == "off" ? "bluetooth-alert" : bluetooth.battery < "20" ? "bluetooth-alert" : "" }" 
              :text "${bluetooth.battery}%" 
              :visible "${bluetooth.battery < 30 ? true : false}")
       )))

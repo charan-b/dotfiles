@@ -6,15 +6,17 @@
          :space-evenly false 
       (eventbox :onclick "wpctl set-mute @DEFAULT_SINK@ toggle"
         (label :class "volume-icon" 
-               :text "${volume.icon}"))
+               :text "${volume.muted ? "􀊣": volume.value > 60 ? "􀊧" : volume.value > 30 ? "􀊥" : "􀊡" }"))
       (revealer :reveal volume_reveal 
                 :transition "slideleft" 
                 :duration "400ms"
         (box :space-evenly false
-          (scale :value "${volume.volume}"
+          (scale :value "${volume.value}"
                  :min 1
                  :max 100 
                  :onchange "wpctl set-volume @DEFAULT_SINK@ {}%"
                  :orientation "h"
                  :width 100)
+          (label :class "txt"
+                 :text "${volume.value}% ")
           )))))
