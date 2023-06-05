@@ -5,3 +5,12 @@
       (eventbox :onclick "hyprctl dispatch workspace ${ws.id}"
         (label :class "workspace-entry ${hyprland.active_ws == ws.id  ? "current" : ws.windows == 1 ? "occupied" : "empty"}"
                :text "${ws.id}")))))
+
+(defwidget window-title []
+  (box :class "color-box" 
+       :visible "${hyprland.active_win == "" ? false : true}"
+    (label :class "txt"
+           :limit-width "40"
+           :text '${hyprland.active_win}'
+    )
+  ))

@@ -78,13 +78,14 @@ _vbe_prompt () {
 
     # New line
     print
-
-    # Error 
-    if (( $retval )); then
-        print -n "%b%F{red} ~~>%b%k%f"
-    else
-        print -n "%b%F{green} ~~>%b%k%f"
-    fi
+    print -n "%b%k%f"
+    #
+    # # Error 
+    # if (( $retval )); then
+    #     print -n "%b%F{red}%b%k%f"
+    # else
+    #     print -n "%b%F{green}%b%k%f"
+    # fi
 }
 
 _vbe_setprompt () {

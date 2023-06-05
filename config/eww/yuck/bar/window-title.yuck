@@ -1,8 +1,0 @@
-(defwidget window-title []
-  (box :class "color-box" 
-       :visible "${hyprland.active_win == "" ? false : true}"
-    (label :class "txt"
-           :limit-width "40"
-           :text '${hyprland.active_win}'
-    )
-  ))

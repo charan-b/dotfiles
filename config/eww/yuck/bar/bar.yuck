@@ -20,7 +20,7 @@
   (box :class "right_box" 
        :space-evenly false
        :halign "end" 
-       :spacing 15
+       :spacing 6
     (cpu)
     (ram)
     (temperature)
@@ -37,8 +37,7 @@
 ;----------------------------
 ; Modules
 (include "yuck/bar/date.yuck")
-(include "yuck/bar/workspaces.yuck")
-(include "yuck/bar/window-title.yuck")
+(include "yuck/bar/hyprland.yuck")
 (include "yuck/bar/music.yuck")
 (include "yuck/bar/wifi.yuck")
 (include "yuck/bar/bluetooth.yuck")

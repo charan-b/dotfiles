@@ -1,26 +1,27 @@
 (defwidget wifi []
   (eventbox :cursor "pointer" 
             :onclick "${EWW_CMD} open --toggle wifi_widget"
-            :onhover "${EWW_CMD} update ssid_reveal=true"
-            :onhoverlost "${EWW_CMD} update ssid_reveal=false"
     (box :class "wifi" 
          :space-evenly false 
-      (label :class "wifi-icon wifi-${net.ssid}" 
-             :text "${net.ssid == "" ? "􀙥 " : net.ssid =~ "Wired.*" ? "􀖀 " : "􀙇 "}" )
+      (image :class "lan"
+             :path "${net.ssid == "" ? "${wifi_off}" : net.ssid =~ "Wired.*" ? "${lan}" : "${wifi_on}" }"
+             :image-height "22"
+             :image-width "22")
       (box :space-evenly false 
            :orientation "v"
            :visible "${net.ssid == "" ? false : true}"
            :valign "center"
-        (revealer :reveal "${EWW_NET[net.device].NET_DOWN > 1000 ? false : true}" 
+        (revealer :reveal "${net.ssid == "" ? true : EWW_NET[net.device].NET_DOWN > 1000 ? false : true}" 
                   :transition "slidedown" 
           (label :class "wifi_txt" 
                  :show-truncated false 
                  :limit-width 16 
                  :text "${net.ssid}"))
-        (revealer :reveal "${EWW_NET[net.device].NET_DOWN > 1000 ? true : false}" 
+        (revealer :reveal "${net.ssid == "" ? false : EWW_NET[net.device].NET_DOWN > 1000 ? true : false}" 
                   :transition "slideup" 
-          (speed :speed "${EWW_NET[net.device].NET_DOWN}"))
+          (speed :speed "${net.ssid == "" ? "0" : EWW_NET[net.device].NET_DOWN}"))
           ))))
+
 (defwidget speed [speed]
   (box :space-evenly false
        :halign "center"
