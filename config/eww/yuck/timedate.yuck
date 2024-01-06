@@ -1,0 +1,32 @@
+(defwidget timedate []
+    (eventbox :onhover "${EWW_CMD} update timedate_rev=true" 
+              :onhoverlost "${EWW_CMD} update timedate_rev=false"
+              :onclick "${EWW_CMD} open --toggle calendar"
+              ;; :style "background-color: rgba(0,0,0,0.01); border-radius: 8px;"
+      (revealer :reveal {timedate_rev || matches(formattime(EWW_TIME, '%M:%S'), '00:0[0-2]' ) ? true : false} 
+                :transition "slidedown"
+                :duration 400
+        (box :class "timedate_box"
+          (box :halign "center" 
+               :space-evenly false
+              (label :class "td_time" 
+                     :valign "fill" 
+                     :text "${formattime(EWW_TIME, '%H:%M')}")
+              (label :class "td_week" 
+                     :valign "center" 
+                     :text '${formattime(EWW_TIME, '%a')}')
+              (label :class "td_date" 
+                     :valign "center" 
+                     :text "${formattime(EWW_TIME, '%d-%b')}")
+            ))
+
+          ))
+      )
+
+(defwindow timedate
+  :monitor 0
+  :geometry (geometry :height "4px" :anchor "top center")
+  :stacking "overlay"
+  :namespace "eww_date"
+  :exclusive false
+  (timedate))

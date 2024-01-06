@@ -1,0 +1,30 @@
+(defwidget qs_wifi []
+  (box
+    :class "qs_box ${net.wifi.con == "" ? "off" : "on" }"
+    :space-evenly false
+    (eventbox 
+      :onclick "${net.wifi.con == "" ? "nmcli radio wifi on" : "nmcli radio wifi off" }"
+      :halign "start"
+      (image 
+        :class "qs_icon" 
+        :path "${net.wifi.con == "" ? "${wifi_off}" : "${wifi_on}" }"
+        ))
+    (box :orientation "v"
+         :halign "start"
+         :hexpand true
+      (label 
+        :class "qs_net_title" 
+        :halign "start"
+        :text "Wifi")
+      (label 
+        :class "qs_net_device"
+        :halign "start"
+        :valign "start"
+        :limit-width 14
+        :text "${net.wifi.con == "" ? "---" : net.wifi.con}"))
+    (eventbox 
+      ;; :class "qs_suffix"
+      :onclick "${qs_rev == "" ? "${EWW_CMD} update qs_rev=\"net\"" : "${EWW_CMD} update qs_rev=\"\" ssid_rev=\"\""}"
+      :halign "end"
+      :cursor "pointer"
+      "")))

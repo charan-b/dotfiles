@@ -1,0 +1,31 @@
+(defwidget qs_volume []
+  (box   ;;Volume
+    :space-evenly false
+    ;; :visible "${qs_rev =~ "volume|^$" ? true : false}"
+    (eventbox
+      :class "qs_box"
+      :onclick "wpctl set-mute @DEFAULT_SINK@ toggle"
+      (label 
+        :class "qs_volume_icon"
+        :halign "start"
+        :text "${volume.muted ? "􀊣": volume.percent > 60 ? "􀊧" : volume.percent > 30 ? "􀊥" : "􀊡" }"
+        ))
+    (label :text "􀥤" :style "color: #CAD3F5")
+    (box
+      :hexpand true
+      (overlay
+        (scale 
+          :class "qs_scale"
+          :min 0
+          :max 101
+          :value {volume.percent}
+          :active {!volume.muted}
+          :onchange "wpctl set-volume -l 1.0 @DEFAULT_SINK@ {}%"
+          )
+        (label 
+          :class "qs_vol_label"
+          :halign "end"
+          :text {volume.muted ? "Volume Muted" : volume.percent}
+          )
+        )))
+  )

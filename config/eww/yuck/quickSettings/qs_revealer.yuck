@@ -1,0 +1,35 @@
+(defwidget qs_revealer []
+  (box
+    :orientation "v"
+    :space-evenly false
+    :hexpand true
+    (scroll
+      :class "qs_scroll"
+      :visible {qs_rev == "net" ? true : false}
+      (box 
+        :spacing 10
+        :orientation "v"
+        :space-evenly false
+        (for ssid in "${con}"
+          (box
+            :class "qs_wifi-box" 
+            :orientation "v"
+            :space-evenly false
+            :visible {ssid_rev =~ "${ssid.SSID}|^$" ? true : false}
+            (eventbox 
+              :active "${ssid_rev == "" ? true : false}"
+              :onclick "./scripts/wifi.sh connect ${ssid.BSSID} ${ssid.SSID} &" 
+              (label 
+                :height 40
+                :text "${ssid.SSID}"
+                ))
+            (revealer 
+              :reveal {ssid_rev == ssid.SSID ? true : false}
+              :transition "slidedown" 
+              (input
+                :class "qs_wifi_passwd"
+                :halign "center"
+                :width 300
+                :height 40
+                :onaccept "notify-send ${ssid.SSID} {}"
+                ))))))))

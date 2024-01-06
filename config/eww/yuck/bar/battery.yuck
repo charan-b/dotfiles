@@ -1,0 +1,16 @@
+(defwidget battery []
+  (box :class "battery" 
+       :space-evenly false  
+       :spacing 2 
+       :halign "center"
+    (label :class "battery-icon ${EWW_BATTERY.BAT1.status != "Charging" && EWW_BATTERY.BAT1.capacity < 25 ? 'battery-low' : ''}" 
+           :text "${EWW_BATTERY.BAT1.status == "Charging" ? "􀢋" : EWW_BATTERY.BAT1.capacity > 90 ? "􀛨" : EWW_BATTERY.BAT1.capacity > 50 ? "􀺸" : EWW_BATTERY.BAT1.capacity > 40 ? "􀺶" : EWW_BATTERY.BAT1.capacity > 20 ? "􀛩" : "􀛪" }")
+    (label :class "battery-value ${EWW_BATTERY.BAT1.status != "Charging" && EWW_BATTERY.BAT1.capacity < 25 ? 'battery-low' : ''}" 
+           :limit-width 4 
+           :show-truncated false 
+           :text "${EWW_BATTERY.BAT1.capacity}")
+    ;; (label :class "battery-unit ${EWW_BATTERY.BAT1.status != "Charging" && EWW_BATTERY.BAT1.capacity < 25 ? 'battery-low' : ''}" 
+    ;;        :text "%")
+    ))
+
+; 􀛪    􀛩   􀺶   􀺸   􀛨  􀢋 

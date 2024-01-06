@@ -1,0 +1,15 @@
+(defwidget date []
+  (eventbox :onclick "${EWW_CMD} open --toggle calendar"
+    (box :halign "center" 
+         :space-evenly false
+        (label :class "time" 
+                 :valign "fill" 
+               :text "${formattime(EWW_TIME, '%H:%M')}")
+        (label :class "week" 
+               :valign "center" 
+               :text '${formattime(EWW_TIME, '%a')}')
+        (label :class "date_label" 
+               :valign "center" 
+               :text "${formattime(EWW_TIME, '%d-%b')}")
+      )))
+

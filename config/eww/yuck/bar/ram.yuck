@@ -1,0 +1,15 @@
+(defwidget ram []
+  (box :class "temp" 
+       :space-evenly false 
+       :spacing 2 
+       :halign "center"
+       :visible "${round(EWW_RAM.used_mem_perc,0) > 70 ? true : false}"
+    (label :class "ram-icon ${round(EWW_RAM.used_mem_perc,0) > 70 ? 'ram-alert' : ''}" 
+           :text "􀫦")
+    (label :class "ram-used ${round(EWW_RAM.used_mem_perc,0) > 70 ? 'ram-alert' : ''}" 
+           :limit-width  12
+           :show-truncated false 
+           :text "${round(EWW_RAM.used_mem_perc,0)}")
+    (label :class "ram-used-unit ${round(EWW_RAM.used_mem_perc,0) > 70 ? 'ram-alert' : ''}" 
+           :text "%")
+    ))

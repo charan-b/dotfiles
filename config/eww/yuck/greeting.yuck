@@ -1,0 +1,18 @@
+(defwidget greeting []
+  (eventbox :onclick "${EWW_CMD} close greet" 
+    (box :class "greetbox" 
+         :orientation "v" 
+         :space-evenly false 
+         :valign "center"
+      (label :class "greetmsg" 
+             :text "${formattime(EWW_TIME, '%k:%M')}")
+      (label :class "greetmsg" 
+             :text "${formattime(EWW_TIME, '%a %d-%b')}")
+      )))
+
+(defwindow greet
+  :monitor 0
+  :geometry (geometry :x "0px" :y "0px" :width "30%" :height "30%" :anchor "top center")
+  :stacking "bottom"
+  :namespace "eww_greet"
+  (greeting))

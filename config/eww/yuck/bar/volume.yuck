@@ -1,0 +1,28 @@
+(defwidget volume []
+  (eventbox 
+    :cursor "pointer"
+    :onhover "${EWW_CMD} update volume_reveal=true"
+    :onhoverlost "${EWW_CMD} update volume_reveal=false"
+    (box 
+      :class "volume" 
+      :space-evenly false 
+      (eventbox 
+        :onclick "wpctl set-mute @DEFAULT_SINK@ toggle"
+        (label 
+          :class "volume-icon" 
+          :text "${volume.muted ? "􀊣": volume.percent > 60 ? "􀊧" : volume.percent > 30 ? "􀊥" : "􀊡" }"))
+      (revealer 
+        :reveal volume_reveal 
+        :transition "slideleft" 
+        (box 
+          :space-evenly false
+          (scale 
+            :value "${volume.percent}"
+            :min 1
+            :max 100 
+            :onchange "wpctl set-volume -l 1.0 @DEFAULT_SINK@ {}%"
+            :orientation "h"
+            :width 100)
+          (label 
+            :class "txt"
+            :text "${volume.percent}"))))))

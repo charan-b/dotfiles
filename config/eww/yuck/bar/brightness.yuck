@@ -1,0 +1,23 @@
+(defwidget brightness []
+  (eventbox :cursor "pointer"
+            :onhover "${EWW_CMD} update brightness_reveal=true"
+            :active "${!volume_reveal}"
+            :onhoverlost "${EWW_CMD} update brightness_reveal=false"
+    (box :class "brightness" 
+         :space-evenly false 
+      (eventbox :onclick ""
+        (label :class "brightness-icon" 
+               :text "􀆮"))
+      (revealer :reveal brightness_reveal 
+                :transition "slideleft" 
+                ;; :duration "200ms"
+        (box :space-evenly false
+          (scale :value brightness
+                 :min 1
+                 :max 100 
+                 :onchange "brightnessctl set {}% &>/dev/null"
+                 :orientation "h"
+                 :width 135)
+          (label :class "txt"
+                 :text "${brightness}")
+          )))))

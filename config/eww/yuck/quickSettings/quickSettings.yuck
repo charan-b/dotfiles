@@ -1,0 +1,93 @@
+(defwidget settings []
+  (box ; Qs Settings main box
+    :class "qs_main_box"
+    :orientation "v"
+    :hexpand true
+    :spacing 10
+    :space-evenly false
+    (centerbox ; Row Zero
+      (qs_battery)
+      (box :halign "center" 
+           :space-evenly false
+          (label :class "td_time" 
+                 :valign "fill" 
+                 :text "${formattime(EWW_TIME, '%H:%M')}")
+          (label :class "td_week" 
+                 :valign "center" 
+                 :text '${formattime(EWW_TIME, '%a')}')
+          (label :class "td_date" 
+                 :valign "center" 
+                 :text "${formattime(EWW_TIME, '%d-%b')}")
+        )
+      (qs_power)
+      )
+    (box ;; Row One
+      :orientation "h"
+      :spacing 10
+      :width 450
+      (qs_ethernet)
+      (qs_wifi)
+      )
+    (box
+      :visible "${qs_rev =~ "net" ? true : false}"
+      (qs_revealer))
+    (box ;; Row One
+      :orientation "h"
+      :spacing 10
+      (qs_bluetooth)
+      (qs_night_light)
+      )
+    (box
+      :visible "${qs_rev =~ "bt" ? true : false}"
+      (qs_bt_revealer))
+    (box ;; Row Two
+      :spacing 10
+      :vexpand true
+      :orientation "v"
+      :space-evenly false
+      (qs_volume)
+      (qs_brightness)
+      )
+    (box ;; Stats
+      :class "qs_stats"
+      :visible "${qs_rev =~ "stats|^$" ? true : false}"
+      :orientation "v"
+      (qs_cpu)
+      (qs_ram)
+      (qs_storage)
+      )
+    )
+  )
+
+(defwidget QS []
+  (eventbox 
+    :onhoverlost "${EWW_CMD} close quickSettings"
+    (box 
+      :class "powermenu-box" 
+      :orientation "h" 
+      :space-evenly "false" 
+      :halign "end"
+      :valign "center"
+      (settings)
+      )
+    )
+  )
+
+
+(defwindow quickSettings
+  :monitor 0
+  :geometry (geometry :height "50%" :width "50%" :anchor "top right")
+  :stacking "overlay"
+  (QS)
+  )
+
+(include "yuck/quickSettings/qs_bluetooth.yuck")
+(include "yuck/quickSettings/qs_wifi.yuck")
+(include "yuck/quickSettings/qs_volume.yuck")
+(include "yuck/quickSettings/qs_brightness.yuck")
+(include "yuck/quickSettings/qs_stats.yuck")
+(include "yuck/quickSettings/qs_battery.yuck")
+(include "yuck/quickSettings/qs_power.yuck")
+(include "yuck/quickSettings/qs_revealer.yuck")
+(include "yuck/quickSettings/qs_night_light.yuck")
+(include "yuck/quickSettings/qs_ethernet.yuck")

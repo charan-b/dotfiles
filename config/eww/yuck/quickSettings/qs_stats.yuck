@@ -1,0 +1,49 @@
+(defwidget qs_storage []
+  (stat 
+    :icon "􀤃  "
+    :label "Disk Usage:"
+    :value "${round(EWW_DISK["/"].used / 1024 / 1024 / 1024,0)}G of ${EWW_DISK["/"].total / 1024 / 1024 / 1024}G"
+    :perc {EWW_DISK["/"].used_perc}))
+
+(defwidget qs_cpu []
+  (stat 
+    :icon "􀧓 "
+    :label "CPU:"
+    :value "${round(EWW_CPU.avg,1)}"
+    :perc "${EWW_CPU.avg}"))
+
+(defwidget qs_ram []
+  (stat 
+    :icon "􀧖 "
+    :label "RAM:"
+    :value "${round(EWW_RAM.used_mem_perc,1)}"
+    :perc "${EWW_RAM.used_mem_perc}"))
+
+
+(defwidget stat [ icon label value perc ]
+  (box
+    :orientation "v"
+    :spacing 5
+    (box
+      :space-evenly false
+      (label 
+        :class "qs_icon"
+        :halign "start"
+        :text "${icon}"
+        )
+      (label 
+        :class "qs_label"
+        :halign "start"
+        :hexpand true
+        :text "${label}")
+      (label 
+        :class "qs_label"
+        :halign "end"
+        :text "${value}"
+        ))
+    (scale 
+      :class "qs_progress"
+      :active false
+      :value "${perc}"
+      )))
+

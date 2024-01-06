@@ -1,0 +1,20 @@
+(defwidget qs_night_light []
+  (eventbox
+    :onclick "scripts/night_light.sh toggle"
+    (box 
+      :class "qs_box ${night_light =~ "On" ? "on" : "off"}"
+      :space-evenly false
+      (label
+        :class "qs_nl_icon"
+        :text "􀇁")
+      (box
+        :orientation "v"
+        :halign "start"
+       (label
+         :class "txt"
+         :text "Night Light")
+       (label
+         :class "txt"
+         :text "${night_light}"
+         :valign "start"
+         :halign "start")))))

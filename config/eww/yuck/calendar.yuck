@@ -1,0 +1,7 @@
+(defwidget calendar_widget []
+  (calendar))
+(defwindow calendar
+  :monitor 0
+  :geometry (geometry :x "15" :y "10" :width "420px" :height "100px" :anchor "top left")
+  :stacking "overlay"
+  (calendar_widget))

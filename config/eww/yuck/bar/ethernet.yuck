@@ -1,0 +1,31 @@
+(defwidget ethernet []
+  (eventbox :cursor "pointer" 
+            :visible "${net.ethernet.con != ""}"
+    (box :class "wifi" 
+         :space-evenly false 
+      (image :class "net"
+             :path "${lan}"
+             :image-height "22"
+             :image-width "22")
+      (box :space-evenly false 
+           :orientation "v"
+           :valign "center"
+        (revealer :reveal "${net.ethernet.device == "" ? false : EWW_NET[net.ethernet.device].NET_DOWN > 1000 ? false : true}" 
+                  :transition "slidedown" 
+          (label :class "wifi_txt" 
+                 :show-truncated false 
+                 :limit-width 16 
+                 :text "${net.ethernet.con == "" ? "" : net.ethernet.con}"))
+        (revealer :reveal "${net.ethernet.con == "" ? false : EWW_NET[net.ethernet.device].NET_DOWN > 1000 ? true : false}" 
+                  :transition "slideup" 
+          (speed :speed "${net.ethernet.con == "" ? "0" : EWW_NET[net.ethernet.device].NET_DOWN}")
+          )
+          ))))
+
+(defwidget speed [speed]
+  (box :space-evenly false
+       :halign "center"
+    (label :class "wifi_txt"
+           :text "${round(speed/1000,0) < 1000 ? round(speed/1000,0) : round(speed/1000/1000,1)}")
+    (label :class "wifi_txt"
+           :text "${round(speed/1000,0) < 1000 ? "Kb/s" : "Mb/s"}")))

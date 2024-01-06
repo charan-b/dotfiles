@@ -1,0 +1,9 @@
+.greet {
+  background-color: #181926;
+  border-radius: 20px;
+  
+}
+.greetmsg {
+  @extend .txt;
+  font-size: 82px;
+}

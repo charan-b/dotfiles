@@ -1,0 +1,17 @@
+(defwidget qs_battery []
+  (box
+    :space-evenly false
+    (label
+      :class "qs_battery_icon ${EWW_BATTERY.BAT1.status != "Charging" && EWW_BATTERY.BAT1.capacity < 25 ? 'alert' : ''}" 
+      :halign "start"
+      :text "${EWW_BATTERY.BAT1.status == "Charging" ? "􀢋" : 
+                            EWW_BATTERY.BAT1.capacity > 90 ? "􀛨" : 
+                            EWW_BATTERY.BAT1.capacity > 50 ? "􀺸" : 
+                            EWW_BATTERY.BAT1.capacity > 40 ? "􀺶" : 
+                            EWW_BATTERY.BAT1.capacity > 20 ? "􀛩" : "􀛪" }")
+    (label
+      :class "qs_bat_perc ${EWW_BATTERY.BAT1.status != "Charging" && EWW_BATTERY.BAT1.capacity < 25 ? 'alert' : ''}"
+      :text {EWW_BATTERY.BAT1.capacity}
+      )
+    )
+  )

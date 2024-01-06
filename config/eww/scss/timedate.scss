@@ -1,0 +1,27 @@
+.timedate_box {
+  background-color: $bg;
+  border-radius: 8px;
+  margin: 2px 4px 4px 4px;
+  padding: 0px 12px;
+  box-shadow: 0px 0px 3px 0px rgba($color: #000, $alpha: 0.98);
+}
+.td_time {
+  @extend .txt;
+  font-size: 45px;
+  color: $time;
+  padding-right: 10px;
+}
+
+.td_week {
+  @extend .txt;
+  font-weight: normal;
+  font-size: 25px;
+  color: $text;
+}
+.td_date {
+  @extend .txt;
+  font-weight: normal;
+  font-size: 25px;
+  padding-left: 5px;
+  color: $text;
+}

@@ -1,0 +1,64 @@
+; Modules
+(include "yuck/bar/date.yuck")
+(include "yuck/bar/hyprland.yuck")
+(include "yuck/bar/music.yuck")
+(include "yuck/bar/wifi.yuck")
+(include "yuck/bar/bluetooth.yuck")
+(include "yuck/bar/volume.yuck")
+(include "yuck/bar/brightness.yuck")
+(include "yuck/bar/cpu.yuck")
+(include "yuck/bar/ram.yuck")
+(include "yuck/bar/temp.yuck")
+(include "yuck/bar/battery.yuck")
+(include "yuck/bar/power.yuck")
+(include "yuck/bar/corners.yuck")
+(include "yuck/bar/ethernet.yuck")
+
+;----------------------------
+
+(defwidget bar []
+  (box :orientation "v"
+       :space-evenly "false"
+    (centerbox :class "bar-box" 
+         :orientation "h"
+      (box :class "left_box" 
+           :space-evenly false 
+           :halign "start" 
+           :orientation "h" 
+           :spacing 10
+        (date)
+        (workspaces)
+        (window-title))
+      (box :class "center_box"
+        (music))
+      (box :class "right_box" 
+           :space-evenly false
+           :halign "end" 
+           :spacing 6
+        (cpu)
+        (ram)
+        (temperature)
+        (wifi)
+        (ethernet)
+        (bluetooth)
+        (box :class "color-box" 
+             :space-evenly false 
+             :halign "start"
+             :spacing 3
+          (volume)
+          (brightness))
+        (eventbox :class "settings_button"
+                  :onclick "${EWW_CMD} open --toggle quickSettings" "􀣌")
+        (battery)
+        (power)))
+    (corners)))
+
+;----------------------------
+
+(defwindow bar
+  :monitor 0
+  :geometry (geometry :x "0px" :y "0px" :width "100%" :height "22px" :anchor "top center")
+  :stacking "bg"
+  :namespace "eww_bar"
+  ;; :exclusive true
+  (bar))

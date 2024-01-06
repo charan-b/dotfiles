@@ -1,0 +1,41 @@
+#! /bin/bash
+
+# This value is used to hold the return value of the prompt sub-functions.
+__git_retval=""
+
+# Create some color constants to make the prompt a little more readable.
+reset_color="\[\e[0m\]"
+fg_red="\[\e[01;31m\]"
+fg_green="\[\e[0;32m\]"
+__cyan_color="\[\e[0;36m\]"
+fg_blue="\[\e[0;34m\]"
+fg_orange="\[\e[0;33m\]"
+
+# Returns the git branch (if there is one), or returns empty.
+function __get_git_stuff() {
+  local branch
+  if branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null); then
+    if [[ "$branch" == "HEAD" ]]; then
+      branch='detached*'
+    fi
+    __git_retval="${fg_blue}(${fg_orange} ${fg_red}${branch}${fg_blue})"
+  else
+    __git_retval=''
+  fi
+}
+
+# This function creates prompt.
+function __prompt_command() {
+  local last_command_retval="$?"
+  local dollar_color="$fg_green"
+  if [ $last_command_retval -ne 0 ]; then
+    dollar_color="$fg_red"
+  fi
+  __get_git_stuff
+
+  # Set the PS1 to the new prompt.
+  PS1="\n ${fg_green}\w ${__git_retval}\n ${dollar_color}~~>${reset_color} "
+}
+
+# Tell bash about the function above.
+export PROMPT_COMMAND=__prompt_command

@@ -1,0 +1,28 @@
+#!/bin/sh
+conf=~/dotfiles/config
+share=~/dotfiles/local/share
+
+symlink() {
+    [ -h "$2" ] && rm "$2"
+    [ -e "$2" ] && mv "$2" "$2".bak
+    ln -s "$1" "$2" && echo "symlink added: \"$1\" --> \"$2\""
+}
+
+ls "$conf" | while read -r "__file"; do
+    [ "$__file" = "NvChad" ] && continue
+    symlink "$conf"/"$__file" "$HOME"/.config/"$__file"
+done
+
+ls "$share" | while read -r "__file"; do
+    symlink "$share"/"$__file" ~/.local/share/"$__file"
+done
+
+[ -d "$HOME/dotfiles/local/bin" ] && symlink ~/dotfiles/local/bin ~/.local/bin
+
+if [ -d ~/.config/NvChad/ ]; then
+    symlink ~/dotfiles/config/NvChad/custom ~/.config/NvChad/lua/custom
+else
+    git clone https://github.com/NvChad/NvChad ~/.config/NvChad
+    [ -e ~/.config/NvChad/lua/custom ] && rm -rf ~/.config/NvChad/lua/custom
+    symlink ~/dotfiles/config/NvChad/custom ~/.config/NvChad/lua/custom
+fi

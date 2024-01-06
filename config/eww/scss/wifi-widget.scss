@@ -1,0 +1,15 @@
+.wifi-box {
+  @extend .bar-box;
+  min-width: 300px;
+  padding: 10px 5px 10px 5px;
+  margin: 5px;
+  // border: 2px solid;
+  border-color: $text;
+}
+.wifi-color-box {
+  background-color: rgba($color: $fg, $alpha: 0.2);
+  border-radius: 8px;
+  min-height: 40px;
+}
+
+// vim: foldmethod=marker

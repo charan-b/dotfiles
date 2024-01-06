@@ -1,0 +1,24 @@
+(defwidget bluetooth []
+  (eventbox :cursor "pointer" 
+            :onclick "bluetoothctl connect 'F8:AB:E5:24:AE:D1'"
+            :visible "${bluetooth.state == "" ? false : true}"
+    (box :class "bluetooth" 
+         :space-evenly false 
+         :spacing 3
+      (label :class "bluetooth-icon ${bluetooth.battery == "null" ? "" : bluetooth.battery < "20" ? "bluetooth-alert" : "" }" 
+             :text "􀲍" ) ; 􀑈 
+      (box :orientation "v"
+           :space-evenly false
+           :valign "center"
+        (revealer :reveal "${bluetooth.battery == "null" ? true : bluetooth.battery < "20" ? false : true }"
+                  :transition "slidedown" 
+          (label :class "bluetooth-ssid"
+                 :show-truncated false 
+                 :limit-width 16 
+                 :tooltip "${bluetooth.battery}" 
+                 :text "${bluetooth.state}"))
+        (revealer :reveal "${bluetooth.battery == "null" ? false : bluetooth.battery < "20" ? true : false }"
+                  :transition "slideup" 
+          (label :class "bluetooth-ssid ${bluetooth.battery == "null" ? "" : bluetooth.battery < "20" ? "bluetooth-alert" : "" }" 
+                 :text "${bluetooth.battery == "null" ? "" : bluetooth.battery}%")
+          )))))

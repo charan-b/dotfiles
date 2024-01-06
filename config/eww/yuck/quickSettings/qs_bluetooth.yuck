@@ -1,0 +1,66 @@
+(defwidget qs_bluetooth []
+  (box  ;;Bluetooth
+    :class "qs_box ${bluetooth.powered == "unblocked" ? "on" : "off" }"
+    ;; :visible "${qs_rev == "" ||qs_rev == "bluetooth" ? true : false}"
+    (eventbox 
+      :onclick "${bluetooth.powered == "unblocked" ? "rfkill block bluetooth" : "rfkill unblock bluetooth" }"
+      (box
+        :orientation "h"
+        :space-evenly false
+        (label 
+          :class "qs_bt_icon"
+          :text "􀲍")
+        (box
+          :orientation "v"
+          :hexpand true
+          (label :class "qs_bt_title" 
+                :valign "center"
+                :halign "start"
+                :hexpand true
+                :text "Bluetooth")
+          (box
+            :orientation "h"
+            :space-evenly "false"
+            (label 
+              :class "qs_bt_device"
+              :halign "start"
+              :valign "start"
+              :text "${bluetooth.state == "" ? "No Devices" : bluetooth.state}" 
+              )
+            (label 
+              :class "qs_bt_perc"
+              :halign "start"
+              :valign "start"
+              :visible "${bluetooth.battery != "null" ? true : false}"
+              :text "${bluetooth.state == "" ? "" : bluetooth.battery}")))
+
+        (eventbox 
+          :onclick "${qs_rev == "" ? "${EWW_CMD} update qs_rev=\"bt\"" : "${EWW_CMD} update qs_rev=\"\""}"
+          :cursor "pointer"
+          "")
+        ))))
+
+(defwidget qs_bt_revealer []
+  (box
+    :orientation "v"
+    :space-evenly false
+    :hexpand true
+    (scroll
+      :class "qs_scroll"
+      (box 
+        :spacing 10
+        :orientation "v"
+        :space-evenly false
+        (for bl in "${qs_bt}"
+          (box
+            :class "qs_wifi-box" 
+            :orientation "v"
+            :space-evenly false
+            (eventbox 
+              :onclick "bluetoothctl connect ${bl.ssid} ; ${EWW_CMD} update qs_rev=\"\"" 
+              :cursor "pointer"
+              (label 
+                :height 40
+                :text "${bl.dev}"
+                ))
+              ))))))

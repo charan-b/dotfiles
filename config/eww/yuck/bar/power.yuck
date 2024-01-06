@@ -1,0 +1,7 @@
+(defwidget power []
+  (eventbox :class "power" 
+            :onclick "${EWW_CMD} open --toggle powermenu"
+    (label :class "power-icon"
+           :text '􀆨'
+    )
+  ))

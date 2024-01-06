@@ -1,0 +1,15 @@
+(defwidget cpu []
+  (box :class "cpu" 
+       :space-evenly false 
+       :spacing 2 
+       :halign "center"
+       :visible "${round(EWW_CPU.avg,0) > 70 ? true : false}"
+    (label :class "cpu-icon ${round(EWW_CPU.avg,0) > 70 ? 'cpu-alert' : ''}" 
+           :text "􀫥")
+    (label :class "cpu-used ${round(EWW_CPU.avg,0) > 70 ? 'cpu-alert' : ''}" 
+           :xalign "1"
+           :show-truncated false 
+           :text "${round(EWW_CPU.avg,0) < 100 ? replace("00${round(EWW_CPU.avg, 0)}", "^.*([0-9]{2}$)", "\\1") : round(EWW_CPU.avg,0) }")
+    (label :class "cpu-used-unit ${round(EWW_CPU.avg,0) > 70 ? 'cpu-alert' : ''}" 
+           :text "%")
+    ))

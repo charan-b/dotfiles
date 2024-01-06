@@ -1,0 +1,12 @@
+(defwidget temperature []
+  (box :class "temp" 
+       :space-evenly false 
+       :spacing 2 
+       :halign "center" 
+       :visible "${EWW_TEMPS.CORETEMP_PACKAGE_ID_0 > 80 ? true : false}"
+    (label :class "temp-icon ${EWW_TEMPS.CORETEMP_PACKAGE_ID_0 > 80 ? 'temp-alert' : ''}" 
+           :text "􀇬")
+    (label :class "temp-txt ${EWW_TEMPS.CORETEMP_PACKAGE_ID_0 > 80 ? 'temp-alert' : ''}" 
+           :limit-width  12
+           :show-truncated false 
+           :text "${EWW_TEMPS.CORETEMP_PACKAGE_ID_0}°C")))

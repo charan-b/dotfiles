@@ -1,0 +1,22 @@
+(defwidget wifi-widget []
+  (box :class "wifi-box" 
+       :orientation "v" 
+       :space-evenly false 
+       :spacing "8"
+    (label :class "txt"
+           :text "No Connections Available"
+           :visible "${con == "[]" ? true : false}")
+    (for ssid in "${con}"
+      (box :class "wifi-color-box" 
+           :valign "center"
+        (eventbox :class "txt" 
+                  :valign "center" 
+                  :onclick "./scripts/wifi.sh connect ${ssid.BSSID} ${ssid.SSID} &" "${ssid.SSID}")))))
+
+(defwindow wifi_widget
+  :monitor 0
+  :geometry (geometry :x "140px" :y "0px" :anchor "top right")
+  :stacking "overlay"
+;  :namespace eww_bar
+  :exclusive true
+    (wifi-widget))

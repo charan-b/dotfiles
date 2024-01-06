@@ -1,0 +1,24 @@
+(defwidget qs_ethernet []
+  (box
+    :class "qs_box ${net.ethernet.con == "" ? "off" : "on" }"
+    :space-evenly false
+    (eventbox 
+      :onclick "${net.ethernet.con == "" ? "nmcli radio wifi on" : "nmcli radio wifi off" }"
+      :halign "start"
+      (image 
+        :class "qs_icon" 
+        :path "${lan}"
+        ))
+    (box :orientation "v"
+         :halign "start"
+         :hexpand true
+      (label 
+        :class "qs_net_title" 
+        :halign "start"
+        :text "Ethernet")
+      (label 
+        :class "qs_net_device"
+        :halign "start"
+        :valign "start"
+        :text "${net.ethernet.con == "" ? "No Networks" : net.ethernet.con}"))
+      ))

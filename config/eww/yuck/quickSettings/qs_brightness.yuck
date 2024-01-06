@@ -1,0 +1,25 @@
+(defwidget qs_brightness []
+  ;; (box    ;;Brightness
+    ;; :space-evenly false
+    ;; :visible "${qs_rev =~ "brightness|^$" ? true : false}"
+    (overlay
+      (scale 
+        :class "qs_scale"
+        :min 1
+        :max 101
+        :value brightness
+        :onchange "brightnessctl set {}% &>/dev/null"
+        )
+      (box :class "qs_bri_box"
+      (label
+        :class "qs_icon"
+        :halign "start"
+        :text "􀆮"
+        )
+      (label
+        :class "qs_label qs_bri_label"
+        :halign "end"
+        :text brightness
+        ))
+      ;; )
+  ))

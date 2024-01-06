@@ -1,0 +1,10 @@
+(defwidget warning []
+  (eventbox :class "battery_alert" :onclick "eww open --toggle warning" "${warning}")
+  )
+
+(defwindow warning
+  :monitor 0
+  :geometry (geometry :x "0" :y "0" :width "420px" :height "100px" :anchor "center top")
+  :stacking "overlay"
+  :namespace "warning-widget"
+  (warning))

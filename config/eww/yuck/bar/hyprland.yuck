@@ -1,0 +1,21 @@
+(defwidget workspaces []
+  (box :class "workspaces" 
+       :space-evenly false
+       :spacing 5
+    (for ws in "[ 1, 2, 3, 4, 5, 6 ]"
+      (eventbox :cursor "pointer"
+                :halign "center"
+                :valign "center"
+        (button :class "workspace-entry ${hyprland.active_ws == ws  ? "current" : hyprland[ws] == 1 ? "occupied" : "empty"}"
+                :onclick "hyprctl dispatch workspace ${ws}"
+                )))))
+
+(defwidget window-title []
+  (box :class "color-box" 
+       :visible "${hyprland.active_win == "" ? false : true}"
+    (label :class "txt"
+           :limit-width "40"
+           :valign "center"
+           :text '${hyprland.active_win}'
+    )
+  ))

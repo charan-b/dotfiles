@@ -1,0 +1,27 @@
+(defwidget osd_vol []
+  (box
+  (eventbox :onclick "${EWW_CMD} close osd" 
+    (box :class "osd-box" 
+         :space-evenly false 
+         :orientation "h"
+         :halign "center"
+      (overlay
+      (label :class "osd-text" 
+             :halign "center"
+             :text "${volume.percent}")
+      (circular-progress :class "osd-progress" 
+        :value "${volume.percent}"
+        :start-at 73
+        :clockwise true
+        :thickness 4
+        :height 23
+        :width 23)
+        )(label :class "osd-vol" :text "Volume")
+      ))))
+
+(defwindow osd []
+  :monitor 0
+  :geometry (geometry :x "0px" :y "0px" :width "10%" :height "5%" :anchor "top center")
+  :stacking "overlay"
+  :namespace "eww-osd"
+  (osd_vol))

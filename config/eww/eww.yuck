@@ -1,0 +1,11 @@
+; Widgets
+(include "yuck/bar/bar.yuck")
+(include "yuck/variables.yuck")
+(include "yuck/powermenu.yuck")
+(include "yuck/wifi-widget.yuck")
+(include "yuck/greeting.yuck")
+(include "yuck/warning.yuck")
+(include "yuck/timedate.yuck")
+(include "yuck/calendar.yuck")
+(include "yuck/quickSettings/quickSettings.yuck")
+(include "yuck/osd.yuck")

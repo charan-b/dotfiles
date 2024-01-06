@@ -1,0 +1,27 @@
+;; Bar
+(defvar music_reveal false)
+(defvar volume_reveal false)
+(defvar bluetooth_reveal false)
+(defvar brightness_reveal false)
+(defvar player "mpd")
+(defvar lan "assets/lan_yellow_24dp.svg")
+(defvar wifi_on "assets/wifi_yellow_24dp.svg")
+(defvar wifi_off "assets/wifi_off_yellow_24dp.svg")
+
+(deflisten brightness :initial "0" "scripts/brightness.sh")
+(deflisten net :initial '{"wifi": {"device": "", "con": ""}, "ethernet": {"device": "", "con": ""} }' "scripts/net.sh")
+(deflisten volume :initial '{"percent": 0, "muted": false}' "scripts/volume.sh")
+(deflisten bluetooth :initial '{"state": "", "battery": "0"}' "scripts/bluetooth.sh")
+(deflisten hyprland :initial '{"1": "", "active_win": "", "active_ws": 1}' "scripts/hyprland.sh")
+
+(defpoll music :interval "2s" :initial '{}' "scripts/music.sh mpris")
+(defpoll qs_bt :interval "8s" :initial "[]" "scripts/qs_bt_revealer.sh")
+;; Warning
+(defvar warning "Battery is Low")
+;; WIfi Widget
+(defpoll con :interval "8s" :initial "[]" "scripts/wifi.sh ssid")
+(defpoll night_light :interval "8s" :initial "" "scripts/night_light.sh state")
+;; timedate
+(defvar timedate_rev false)
+(defvar qs_rev "")
+(defvar ssid_rev "")

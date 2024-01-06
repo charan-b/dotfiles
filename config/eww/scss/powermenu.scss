@@ -1,0 +1,35 @@
+.powermenu {
+  background-color: rgba($color: #000, $alpha: 0.5);
+}
+
+.powermenu-box {
+  // background-color: $gray-alt;
+  border-radius: 20px;
+  margin-bottom: 120px;
+}
+.powermenu-icon-box {
+  border-radius: 30px;
+  padding: 20px;
+  margin: 20px;
+  min-width: 120px;
+  min-height: 120px;
+  font-size: 80px;
+  background-color: rgba($color: $bg, $alpha: 0.2);
+}
+.shutdown {
+  @extend .powermenu-icon-box;
+  color: $red;
+}
+.reboot {
+  @extend .powermenu-icon-box;
+  color: $green;
+}
+.exit {
+  @extend .powermenu-icon-box;
+  // font-family: "Material Icons Round";
+  color: $blue;
+}
+.lock {
+  @extend .powermenu-icon-box;
+  color: $accent;
+}

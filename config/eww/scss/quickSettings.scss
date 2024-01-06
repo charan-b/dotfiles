@@ -1,0 +1,151 @@
+.qs_main_box {
+  background-color: $bg; 
+  border-radius: 17px; 
+  padding: 20px;
+  margin: 20px 14px 4px 4px;
+  box-shadow: 0px 0px 3px 0px rgba($color: #000, $alpha: 0.98);
+
+}
+.qs_box {
+  border-radius: 25px;
+  min-height: 60px;
+  background-color: rgba($color: $fg, $alpha: 0.3);
+  padding: 0px 10px;
+  &.on {
+    background-color: rgba($color: $accent, $alpha: 0.2);
+  }
+  &.off {
+    background-color: rgba($color: $fg, $alpha: 0.3);
+  }
+}
+.qs_scale trough {
+    margin: 0px;
+    border-radius: 20px;
+    background-color: rgba($color: $fg, $alpha: 0.2);
+}
+.qs_scale trough highlight {
+    border: 0px;
+    min-height: 40px;
+    border-radius: 25px;
+    background-color: rgba($color: $accent, $alpha: 0.2);
+  }
+.alert {
+  color: $red;
+}
+.qs_storage_scale {
+  @extend .qs_scale;
+}
+
+.qs_icon {
+  font-size: 22px;
+  color: $accent;
+  // min-width: 31px;
+}
+.qs_battery_icon {
+  @extend .qs_icon;
+  padding: 0px;
+  font-size: 24px;
+}
+.qs_bat_perc {
+  @extend .txt;
+  padding: 0px 6px;
+}
+.qs_power_icon {
+  @extend .qs_icon;
+  color: $red;
+  font-weight: bolder;
+}
+.qs_label {
+  @extend .txt;
+  font-weight: bolder;
+  font-size: 18px;
+}
+
+.qs_progress trough {
+    margin: 0px;
+    border-radius: 50px;
+    background-color: rgba($color: $fg, $alpha: 0.2);
+}
+.qs_progress trough highlight {
+    border: 0px;
+    min-height: 15px;
+    border-radius: 50px;
+    background-color: rgba($color: $accent, $alpha: 0.2);
+  }
+.qs_scroll {
+  padding: 8px 0px;
+  min-height: 200px;
+  margin-top: 8px;
+  border-radius: 7px;
+}
+.qs_wifi-box {
+  @extend .txt;
+  background-color: rgba($color: $fg, $alpha: 0.2);
+  border-radius: 7px;
+}
+.qs_wifi_passwd {
+  background-color: $bg;
+  border-radius: 8px;
+  margin: 2px 4px 4px 4px;
+  padding: 0px 12px;
+  box-shadow: 0px 0px 3px 0px rgba($color: #000, $alpha: 0.98);
+}
+.qs_net_title {
+  @extend .qs_label;
+  padding: 0px 15px;
+}
+.qs_net_device {
+  @extend .qs_label;
+  padding: 0px 15px;
+  font-size: 14px;
+}
+.qs_suffix {
+  border-radius: 0px 35px 35px 0px;
+  background-color: rgba($color: $yellow, $alpha: 0.2);
+  color: $yellow;
+}
+
+.qs_bt_title {
+  @extend .qs_label;
+  padding: 0px 15px;
+}
+.qs_bt_device {
+  @extend .qs_label;
+  padding: 0px 15px;
+  font-size: 14px;
+}
+.qs_bt_perc {
+  @extend .qs_label;
+  // padding: 0px 0px 0px 10px;
+  font-size: 14px;
+}
+.qs_bt_icon {
+  @extend .qs_icon;
+  font-size: 26px;
+}
+.qs_volume_icon {
+  @extend .qs_icon;
+  padding: 0px 8px;
+}
+.qs_vol_label {
+  @extend .qs_label;
+  padding: 0px 12px;
+}
+
+.qs_stats {
+  padding: 20px;
+  border-radius: 17px;
+  background-color: rgba($color: $fg, $alpha: 0.2);
+}
+.qs_nl_icon {
+  padding: 0px 12px 0px 0px;
+  color: $accent;
+  font-size: 22px;
+}
+.qs_cpu_per ,.qs_mem_per{
+  @extend .txt;
+  font-size: 18px;
+}
+.qs_bri_box {
+  padding: 0px 12px;
+}

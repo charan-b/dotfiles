@@ -1,0 +1,307 @@
+.bar-box {
+  background-color: $bg;
+  // border-radius: 8px;
+  // margin: 2px 4px 4px 4px;
+  padding: 0px 14px;
+  box-shadow: 0px 0px 2px 2px rgba($color: $bg, $alpha: 0.80);
+}
+
+scale trough {
+	all: unset;
+	background-color: $scale_trough;
+	border-radius: 10px;
+  margin: 0px 14px 0px 4px;
+	box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.2);
+}
+.color-box {
+  background-color: rgba($color: $fg, $alpha: 0.55);
+  border-radius: 7px;
+  margin: 4px 0px;
+  padding: 1px 10px;
+}
+.txt {
+  color: $text;
+  font-weight: bold;
+}
+
+// Left:
+//{{{ Date
+.time {
+  @extend .txt;
+  font-size: 23px;
+  color: $time;
+  padding-right: 10px;
+}
+.week {
+  font-weight: normal;
+  font-size: 18px;
+  color: rgba($color: $text,$alpha: 0.8);
+}
+.date_label {
+  @extend .week;
+  padding-left: 5px;
+}
+//}}}
+
+//{{{ hyprland
+.workspaces {
+  // @extend .txt;
+  // padding: 0px 5px;
+  // font-weight: bolder;
+  // font-size: 19px;
+}
+.empty {
+  color: $fg;
+  background-color: $fg;
+  border-radius: 5px;
+  // margin: 5px 0px;
+  min-height: 10px;
+  min-width: 10px;
+}
+.current {
+  // color: $accent;
+  // padding: 10px 3px;
+  border-radius: 16px;
+  min-height: 12px;
+  background-color: $accent;
+  min-width: 22px;
+}
+.occupied {
+  min-width: 12px;
+  min-height: 12px;
+  background-color: rgba($color: $accent,$alpha: 0.5);
+  border-radius: 16px;
+}
+//}}}
+
+// CENTER:
+.center_box {
+  font-family: "SF Pro";
+  font-weight: bolder;
+  padding: 0px 18px 0px 0px;
+}
+//{{{ Music
+.music-icon {
+    font-family: "SF Pro Rounded";
+    font-weight: bold;
+    font-size: 18px;
+    color: $accent;
+  }
+.music-title {
+  @extend .txt;
+  font-size: 18px;
+  padding-left: 10px;
+}
+.music-prev {
+    @extend .txt;
+    font-size: 18px;
+  }
+.music-play {
+    @extend .txt;
+    padding: 0px 25px 0px 25px;
+    font-size: 18px;
+  }
+.music-next {
+    @extend .txt;
+    font-size: 18px;
+  }
+//}}}
+
+// RIGHT:
+//{{{ Wifi
+
+.net {
+  padding-right: 4px;
+}
+
+// .wifi-icon {
+//     font-family: "SF Pro Rounded";
+//     font-weight: normal;
+//     padding-right: 1px;
+//     padding-bottom: 2px;
+//     color: $accent;
+//     font-size: 19px;
+//   }
+// .wifi-off {
+//       color: $accent;
+//     }
+
+.wifi_txt {
+    @extend .txt;
+    padding: 0px 2px 0px 0px;
+    margin-left: 0px;
+  }
+//}}}
+
+//{{{ Bluetooth
+.bluetooth-icon {
+    font-family: "SF Pro Rounded";
+    font-weight: bolder;
+    color: $accent;
+    font-size: 21px;
+  }
+.bluetooth-ssid {
+    @extend .txt;
+    padding-right: 2px;
+    // border-radius: 5px;
+    // padding: 0px 4px;
+    // background-color: rgba($color: $fg, $alpha: 0.08);
+  }
+.bluetooth-alert {
+    color: $alert;
+  }
+//}}}
+
+//{{{ Volume
+.volume scale trough highlight {
+    border-radius: 10px;
+    background: $scale_highlight;
+    padding: 7px;
+  }
+.volume-icon {
+    font-family: "SF Pro Rounded";
+    color: $accent;
+    font-weight: bolder;
+    min-width: 25px;
+  }
+//}}}
+
+//{{{ brightness
+.brightness scale trough highlight {
+    border-radius: 10px;
+    background: $scale_highlight;
+    padding: 7px;
+  }
+.brightness-icon {
+    font-family: "SF Pro Rounded";
+    color: $accent;
+    font-weight: bolder;
+  }
+//}}}
+
+//{{{ Cpu
+.cpu {
+  padding: 0px 0px 0px 15px;
+}
+.cpu-icon {
+    font-family: "SF Pro Rounded";
+    color: $accent;
+    font-weight: normal;
+    font-size: 20px;
+  }
+.cpu-used {
+    color: $text;
+    font-weight: bold;
+    font-size: 18px;
+  }
+.cpu-used-unit {
+    font-family: "SF Pro Rounded";
+    color: $text;
+    font-weight: normal;
+    font-size: 17px;
+  }
+.cpu-alert {
+    color: $alert;
+  }
+//}}}
+
+//{{{ Ram
+.ram {
+  padding: 0px 0px 0px 15px;
+}
+.ram-icon {
+    font-family: "SF Pro Rounded";
+    color: $accent;
+    font-weight: normal;
+    font-size: 20px;
+  }
+.ram-used {
+    color: $text;
+    font-weight: bold;
+    font-size: 18px;
+  }
+.ram-used-unit {
+    font-family: "SF Pro Rounded";
+    color: $text;
+    font-weight: normal;
+    font-size: 17px;
+  }
+.ram-alert {
+    color: $alert;
+  }
+//}}}
+
+//{{{ Temp
+.temp {
+  padding: 0px 0px 0px 15px;
+}
+.temp-icon {
+    font-family: "SF Pro Rounded";
+    color: $accent;
+    font-weight: normal;
+    font-size: 20px;
+
+  }
+.temp-txt {
+    color: $text;
+    font-weight: bold;
+    font-size: 18px;
+  }
+.temp-alart {
+    color: $alert;
+  }
+//}}}
+
+.settings_button {
+  color: $accent;
+}
+
+//{{{ Battery
+.battery-icon {
+    font-family: "SF Pro Rounded";
+    color: $accent;
+    font-weight: normal;
+    font-size: 23px;
+  }
+.battery-value {
+    @extend .txt;
+    font-size: 18px;
+    color: $text;
+  }
+.battery-unit {
+    @extend .txt;
+    font-family: "SF Pro Rounded";
+    font-size: 17px;
+    font-weight: normal;
+    color: $text;
+  }
+.battery-low {
+    color: $alert;
+  }
+//}}}
+
+//{{{ Power
+.power {
+  padding-left: 10px;
+}
+.power-icon {
+  font-size: 18px;
+  font-weight: bolder;
+  margin-left: 10px;
+  color: $alert;
+}
+//}}}
+
+.corners-left {
+  background-color: transparent;
+  padding: 8px;
+  border-radius: 8px;
+  box-shadow: -8px -8px 0px 0px $bg;
+}
+
+.corners-right {
+  @extend .corners-left;
+  box-shadow: 8px -8px 0px 0px $bg;
+}
+
+// vim: foldmethod=marker

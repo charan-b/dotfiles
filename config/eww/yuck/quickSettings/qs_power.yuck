@@ -1,0 +1,10 @@
+(defwidget qs_power []
+  (eventbox 
+    :onclick "${EWW_CMD} open --toggle powermenu"
+    (label 
+      :class "qs_power_icon"
+      :halign "end"
+      :text '􀆨'
+      )
+    )
+  )
